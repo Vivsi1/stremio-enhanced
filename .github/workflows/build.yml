@@ -60,7 +60,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci --no-optional
-          npm install -g @electron/rebuild
+          npx @electron/rebuild -f
 
       - name: Manually install dmg-license (macOS only)
         if: matrix.os == 'macos-latest'
