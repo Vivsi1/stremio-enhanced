@@ -57,10 +57,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
-      - name: Install dependencies
+      - name: Install dependencies and rebuild (Windows)
+        shell: pwsh
         run: |
+          if (Test-Path "node_modules") {
+            Remove-Item -Recurse -Force node_modules
+          }
+          npm cache clean --force
           npm ci --no-optional
           npx @electron/rebuild -f
+
 
       - name: Manually install dmg-license (macOS only)
         if: matrix.os == 'macos-latest'
