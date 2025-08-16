@@ -59,7 +59,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install --no-optional
+          npm ci --no-optional
           npm install -g @electron/rebuild
 
       - name: Manually install dmg-license (macOS only)
